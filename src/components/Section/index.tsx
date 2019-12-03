@@ -7,7 +7,8 @@ interface WrapProps {
     noPadding?: boolean;
 }
 const Wrap = styled.div<WrapProps>`
-    .contents {
+    box-shadow: 0 5px 5px -1px rgba(0,0,0,0.7);
+    & > .contents {
         
         ${props => !props.noPadding && css`
         padding: 2.5em 3em;
@@ -15,14 +16,16 @@ const Wrap = styled.div<WrapProps>`
         ${mobile(css`
             font-size: 14px;
         `)}
-        .title {
+        & > .title {
             font-size: 3em;
             font-weight: lighter;
         }
     }
     ${props => props.image && css`
-        .image {
-            height: 30vh;
+        & > .image {
+            position: relative;
+            z-index: -1;
+            height: 70vh;
             background: url(${props.image}) no-repeat;
             background-size: cover;
             background-position: center;
