@@ -8,6 +8,7 @@ const Wrap = styled.div`
     flex-wrap: wrap;
 
     .portfolio {
+        background: #333;
         width: 300px;
         margin: 1em;
         border-radius: 7px;
@@ -19,7 +20,7 @@ const Wrap = styled.div`
             border-top-right-radius: 7px;
         }
         .contents {
-            padding: .5em;
+            padding: .5em 1em;
             .title {
                 margin-bottom: 5px;
             }
@@ -31,6 +32,9 @@ const Wrap = styled.div`
                 margin-top: 0;
             }
         }
+        ${mobile(css`
+            width: 100%;
+        `)}
     }
 `;
 

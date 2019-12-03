@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 function usePortfolioList() {
   const query = useStaticQuery(graphql`
     query {
-        allMarkdownRemark(sort:{fields:[frontmatter___date], order:DESC}) {
+        allMarkdownRemark(limit: 5, sort:{fields:[frontmatter___date], order:DESC}) {
         edges {
           node {
             excerpt
