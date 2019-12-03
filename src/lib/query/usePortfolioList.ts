@@ -11,7 +11,7 @@ function usePortfolioList() {
               slug
             }
             frontmatter {
-              date(formatString: "YYYY년 MM월 DD일")
+              date(formatString: "YYYY년 MM월")
               title
               description
               image {
@@ -33,7 +33,7 @@ function usePortfolioList() {
     title: node.frontmatter.title,
     date: node.frontmatter.date,
     description: node.frontmatter.description,
-    image: node.frontmatter.image.childImageSharp.fluid.src,
+    image: node.frontmatter.image && node.frontmatter.image.childImageSharp.fluid.src,
     excerpt: node.excerpt
   }));
 }
