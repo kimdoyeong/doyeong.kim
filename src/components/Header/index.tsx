@@ -70,7 +70,6 @@ const Image = styled.div<{ img: any }>`
 
 function Header() {
     const code = useImageCode();
-    console.log(code);
     return (
         <Wrap>
             <Image img={code.src} aria-label="Coding Desk" />
