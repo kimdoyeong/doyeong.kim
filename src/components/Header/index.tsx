@@ -60,7 +60,6 @@ const Image = styled.div<{ img: any }>`
     max-width: 50vw;
     box-shadow: 5px 5px 5px -1px rgba(0,0,0,1);
     background: url(${props => props.img}) no-repeat;
-    background-attachment: fixed;
     background-size: cover;
     background-position: center;
 

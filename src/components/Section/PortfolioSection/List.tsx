@@ -3,8 +3,6 @@ import styled, { css } from 'styled-components';
 import usePortfolioList from '../../../lib/query/usePortfolioList';
 import { mobile } from '../../../lib/style/media';
 import PortfolioModal from './Modal';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../store/reducer';
 
 const Wrap = styled.div`
     display: flex;
@@ -44,17 +42,15 @@ const Wrap = styled.div`
 
 function Portfolio({ date, description, description_ko, description_en, excerpt, slug, title, image, html, en }: any) {
     const [show, setShow] = useState(false);
-    const lang = useSelector((state: RootState) => state.Language.lang);
-    const desc = description || lang === 'en' ? description_en : description_ko;
     return (
         <>
-            <PortfolioModal en={en} title={title} image={image} contents={html} date={date} show={show} onClose={() => setShow(false)} />
+            <PortfolioModal en={en} title={title} image={image} slug={slug} contents={html} date={date} show={show} onClose={() => setShow(false)} />
             <div className="portfolio" onClick={() => setShow(true)} role="button">
                 <div className="image" style={image ? { background: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}} />
                 <div className="contents">
                     <h3 className="title">{title}</h3>
                     <p className="date">{date}</p>
-                    <p className="description">{desc || excerpt}</p>
+                    <p className="description">{description || excerpt}</p>
                 </div>
             </div>
         </>

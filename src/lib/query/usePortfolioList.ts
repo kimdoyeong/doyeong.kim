@@ -18,7 +18,7 @@ function usePortfolioList() {
             }
             html
             frontmatter {
-              date(formatString: "YYYY년 MM월")
+              date(formatString: "YYYY-MM")
               title
               description
               image {
@@ -45,7 +45,7 @@ function usePortfolioList() {
             }
             html
             frontmatter {
-              date(formatString: "YYYY년 MM월")
+              date(formatString: "YYYY-MM")
               title
               description
               image {
@@ -72,7 +72,7 @@ function usePortfolioList() {
             }
             html
             frontmatter {
-              date(formatString: "YYYY년 MM월")
+              date(formatString: "YYYY-MM")
               title
               description
               image {

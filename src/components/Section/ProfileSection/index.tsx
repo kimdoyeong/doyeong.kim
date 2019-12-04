@@ -45,10 +45,10 @@ function ProfileSection() {
                 <Id name={<>📛 <MultiLanguage ko="이름" en="Name" /></>}>
                     <MultiLanguage ko="김도영 (Doyeong Kim)" en="Doyeong Kim (김도영)" />
                 </Id>
-                <Id name={<>🗓️ <MultiLanguage ko="생년월일" en="Birthday" /></>}>
+                <Id name={<>🗓️ <MultiLanguage ko="출생" en="Birth" /></>}>
                     <MultiLanguage
-                        ko={`2003년 3월 8일 (D+ ${dday}, 만 ${old}세)`}
-                        en={`March 8, 2003 (D+ ${dday}, ${old} Years Old)`}
+                        ko={`2003년 3월 8일 (D+ ${dday}, 만 ${old}세), 대한민국`}
+                        en={`March 8, 2003 (D+ ${dday}, ${old} Years Old), South Korea`}
                     />
                 </Id>
                 <Id name={<>🎓 <MultiLanguage ko="학력" en="Education" /></>}>
