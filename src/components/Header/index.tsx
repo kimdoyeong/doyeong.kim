@@ -5,6 +5,7 @@ import github from '../../assets/github.svg';
 import logo from '../../assets/doyeong.kim.svg';
 import useImageCode from '../../lib/image/useImageCode';
 import { tablet, uhd, mobile } from '../../lib/style/media';
+import LanguageSelector from '../MultiLanguage/LanguageSelector';
 import LinkButton from './Link';
 
 const Wrap = styled.header`
@@ -74,6 +75,7 @@ function Header() {
         <Wrap>
             <Image img={code.src} aria-label="Coding Desk" />
             <div className="contents">
+                <LanguageSelector />
                 <div className="title">
                     <img src={logo} alt="Logo" className="logo" />
                     <h1>Doyeong Kim</h1>

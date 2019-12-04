@@ -1,14 +1,15 @@
 import React from 'react'
 import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/reducer';
 
 interface SEOProps {
     description?: string;
-    lang?: string;
     title: string;
     meta?: any[];
 }
-function SEO({ description, lang = "ko", title, meta = [] }: SEOProps) {
+function SEO({ description, title, meta = [] }: SEOProps) {
     const { site } = useStaticQuery(graphql`
         query {
             site {
@@ -20,6 +21,7 @@ function SEO({ description, lang = "ko", title, meta = [] }: SEOProps) {
             }
         }
     `);
+    const { lang } = useSelector((state: RootState) => state.Language);
 
     const metaDescription = description || site.siteMetadata.description;
     return (

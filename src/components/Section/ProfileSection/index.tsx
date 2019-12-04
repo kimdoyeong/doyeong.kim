@@ -2,6 +2,7 @@ import React from 'react'
 import Section from '..'
 import styled, { css } from 'styled-components';
 import { mobile } from '../../../lib/style/media';
+import MultiLanguage from '../../MultiLanguage';
 
 const IdList = styled.div`
     display: flex;
@@ -20,7 +21,7 @@ const IdList = styled.div`
     }
 `;
 
-function Id({ name, children }: { name: string, children: React.ReactNode }) {
+function Id({ name, children }: { name: string | React.ReactNode, children: React.ReactNode }) {
     return (
         <div className="id-col">
             <h3 className="key">
@@ -41,20 +42,23 @@ function ProfileSection() {
         <Section>
             <h1 className="title">Profile</h1>
             <IdList>
-                <Id name="📛 이름">
-                    김도영 (Doyeong Kim)
+                <Id name={<>📛 <MultiLanguage ko="이름" en="Name" /></>}>
+                    <MultiLanguage ko="김도영 (Doyeong Kim)" en="Doyeong Kim (김도영)" />
                 </Id>
-                <Id name="🗓️ 생년월일">
-                    2003년 3월 8일 (D+ {dday}, 만 {old}세)
+                <Id name={<>🗓️ <MultiLanguage ko="생년월일" en="Birthday" /></>}>
+                    <MultiLanguage
+                        ko={`2003년 3월 8일 (D+ ${dday}, 만 ${old}세)`}
+                        en={`March 8, 2003 (D+ ${dday}, ${old} Years Old)`}
+                    />
                 </Id>
-                <Id name="🎓 학력">
-                    선린인터넷고등학교 소프트웨어과 재학중
+                <Id name={<>🎓 <MultiLanguage ko="학력" en="Education" /></>}>
+                    <MultiLanguage ko="선린인터넷고등학교 소프트웨어과 재학중" en="Attending Sunrin Internet High School Software Division" />
                 </Id>
-                <Id name="👨‍💻 주요 기술">
+                <Id name={<MultiLanguage ko="💻 기술 스킬" en="💻 Skills" />}>
                     Node.js, React, Express, Koa, MongoDB, MySQL, HTML, CSS, Python
                 </Id>
             </IdList>
-        </Section>
+        </Section >
     )
 }
 

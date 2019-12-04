@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled, { css } from 'styled-components';
 import usePortfolioList from '../../../lib/query/usePortfolioList';
 import { mobile } from '../../../lib/style/media';
+import PortfolioModal from './Modal';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/reducer';
 
 const Wrap = styled.div`
     display: flex;
@@ -13,6 +16,7 @@ const Wrap = styled.div`
         margin: 1em;
         border-radius: 7px;
         box-shadow: 3px 3px 5px -1px rgba(0,0,0,0.3);
+        cursor: pointer;
         .image {
             height: 200px;
             background: #dadada;
@@ -38,16 +42,22 @@ const Wrap = styled.div`
     }
 `;
 
-function Portfolio({ date, description, excerpt, slug, title, image }: any) {
+function Portfolio({ date, description, description_ko, description_en, excerpt, slug, title, image, html, en }: any) {
+    const [show, setShow] = useState(false);
+    const lang = useSelector((state: RootState) => state.Language.lang);
+    const desc = description || lang === 'en' ? description_en : description_ko;
     return (
-        <div className="portfolio">
-            <div className="image" style={image ? { background: `url(${image})` } : {}} />
-            <div className="contents">
-                <h3 className="title">{title}</h3>
-                <p className="date">{date}</p>
-                <p className="description">{description || excerpt}</p>
+        <>
+            <PortfolioModal en={en} title={title} image={image} contents={html} date={date} show={show} onClose={() => setShow(false)} />
+            <div className="portfolio" onClick={() => setShow(true)} role="button">
+                <div className="image" style={image ? { background: `url(${image})`, backgroundSize: 'cover', backgroundPosition: 'center' } : {}} />
+                <div className="contents">
+                    <h3 className="title">{title}</h3>
+                    <p className="date">{date}</p>
+                    <p className="description">{desc || excerpt}</p>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 function PortfolioList() {
