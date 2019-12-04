@@ -24,9 +24,8 @@ jobs:
         env:
           NODE_ENV: production
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@releases/v3
+        uses: "maxheld83/ghpages@v0.2.1"
+        env:
+          BUILD_DIR: public/
         with:
-          ACCESS_TOKEN: ${{secrets.GH_PAT}}
-          BASE_BRANCH: master
-          BRANCH: gh-pages
-          FOLDER: public
+          GH_PAT: ${{secrets.GH_PAT}}
