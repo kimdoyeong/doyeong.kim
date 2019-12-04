@@ -5,6 +5,7 @@ import SEO from "../components/SEO"
 import { mobile } from "../lib/style/media"
 import Button from '../components/Form/Button';
 import MultiLanguage from "../components/MultiLanguage"
+import Layout from "../components/Layout"
 
 const Wrap = styled.div`
   & > .contents {
@@ -50,29 +51,31 @@ const Banner = styled.div<{ image?: string }>`
 function Portfolio({ data: { markdownRemark } }: any) {
   const page = markdownRemark
   return (
-    <Wrap>
-      <SEO title={page.frontmatter.title} />
-      <Banner image={page.frontmatter.image.childImageSharp.fluid.src}>
-        {typeof window !== 'undefined' && window.document.referrer && (
-          <Button className="back" onClick={() => window && window.history.back()}>
-            <MultiLanguage ko="뒤로" en="Back" />
-          </Button>
-        )}
-      </Banner>
-      <div className="contents">
-        <header className="header">
-          <h1 className="title">{page.frontmatter.title}</h1>
-          <p className="date">{page.frontmatter.date}</p>
-          <p className="description">{page.frontmatter.description}</p>
-        </header>
-        <article
-          className="article _content_article_"
-          dangerouslySetInnerHTML={{
-            __html: page.html,
-          }}
-        />
-      </div>
-    </Wrap>
+    <Layout>
+      <Wrap>
+        <SEO title={page.frontmatter.title} />
+        <Banner image={page.frontmatter.image.childImageSharp.fluid.src}>
+          {typeof window !== 'undefined' && window.document.referrer && (
+            <Button className="back" onClick={() => window && window.history.back()}>
+              <MultiLanguage ko="뒤로" en="Back" />
+            </Button>
+          )}
+        </Banner>
+        <div className="contents">
+          <header className="header">
+            <h1 className="title">{page.frontmatter.title}</h1>
+            <p className="date">{page.frontmatter.date}</p>
+            <p className="description">{page.frontmatter.description}</p>
+          </header>
+          <article
+            className="article _content_article_"
+            dangerouslySetInnerHTML={{
+              __html: page.html,
+            }}
+          />
+        </div>
+      </Wrap>
+    </Layout>
   )
 }
 export const query = graphql`
