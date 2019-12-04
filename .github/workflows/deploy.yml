@@ -17,7 +17,7 @@ jobs:
           NODE_ENV: production
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
-        env:
+        with:
           ACCESS_TOKEN: ${{secrets.GH_PAT}}
           BASE_BRANCH: master
           BRANCH: gh-pages
