@@ -53,7 +53,7 @@ function Portfolio({ data: { markdownRemark } }: any) {
     <Wrap>
       <SEO title={page.frontmatter.title} />
       <Banner image={page.frontmatter.image.childImageSharp.fluid.src}>
-        {window && window.document.referrer && (
+        {typeof window !== 'undefined' && window.document.referrer && (
           <Button className="back" onClick={() => window && window.history.back()}>
             <MultiLanguage ko="뒤로" en="Back" />
           </Button>
