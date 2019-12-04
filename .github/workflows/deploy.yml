@@ -4,8 +4,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-
+      - uses: actions/checkout@master
       - name: Set up Node.js
         uses: actions/setup-node@master
         with:
@@ -16,4 +15,8 @@ jobs:
         run: yarn run build
         env:
           NODE_ENV: production
-      -name: Deploy
+      - name: Deploy
+        uses: maxheld83/ghpages@v0.2.1
+        env:
+          BUILD_DIR: "public/"
+        secrets: ["GH_PAT"]
