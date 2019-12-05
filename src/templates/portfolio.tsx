@@ -50,7 +50,6 @@ const Banner = styled.div<{ image?: string }>`
 `
 function Portfolio({ data: { markdownRemark } }: any) {
   const page = markdownRemark
-  console.log(typeof window !== 'undefined', document.referrer);
   return (
     <Layout>
       <Wrap>
