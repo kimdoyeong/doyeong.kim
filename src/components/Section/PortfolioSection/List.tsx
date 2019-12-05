@@ -80,8 +80,6 @@ function PortfolioList() {
     const [page, setPage] = useState(1);
     const amount = 5;
     const plist = list.slice((page - 1) * amount, page * amount);
-    console.log((page - 1) * amount, page * amount);
-    console.log(page * amount, list.length);
     return (
         <Wrap>
             <div className="portfolios">
