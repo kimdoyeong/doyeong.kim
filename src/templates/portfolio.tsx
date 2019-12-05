@@ -50,17 +50,12 @@ const Banner = styled.div<{ image?: string }>`
 `
 function Portfolio({ data: { markdownRemark } }: any) {
   const page = markdownRemark
+  console.log(typeof window !== 'undefined', document.referrer);
   return (
     <Layout>
       <Wrap>
         <SEO title={page.frontmatter.title} />
-        <Banner image={page.frontmatter.image.childImageSharp.fluid.src}>
-          {typeof window !== 'undefined' && window.document.referrer && (
-            <Button className="back" onClick={() => window && window.history.back()}>
-              <MultiLanguage ko="뒤로" en="Back" />
-            </Button>
-          )}
-        </Banner>
+        <Banner image={page.frontmatter.image.childImageSharp.fluid.src} />
         <div className="contents">
           <header className="header">
             <h1 className="title">{page.frontmatter.title}</h1>
