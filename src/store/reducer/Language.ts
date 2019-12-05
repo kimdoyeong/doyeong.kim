@@ -1,9 +1,6 @@
-import Cookies from "js-cookie"
-
 const CHANGE_LANGUAGE = "Language/CHANGE_LANGUAGE" as const
 
 export function dispatchChangeLanguage(lang: "ko" | "en") {
-  Cookies.set("lang", lang)
   return {
     type: CHANGE_LANGUAGE,
     lang,
@@ -16,7 +13,7 @@ export interface LanguageType {
 }
 
 const initialState: LanguageType = {
-  lang: (Cookies.get("lang") as "ko" | "en") || "ko",
+  lang: "ko",
 }
 
 export default function(state = initialState, action: ActionType) {
