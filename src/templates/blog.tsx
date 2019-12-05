@@ -75,10 +75,11 @@ const Banner = styled.div<{ image?: string }>`
 `;
 function BlogTemplate({ data: { markdownRemark } }: any) {
     const page = markdownRemark;
+
     return (
         <Layout>
             <Wrap>
-                <SEO title={page.frontmatter.title} />
+                <SEO title={page.frontmatter.title} description={page.frontmatter.description || page.excerpt} />
                 <Banner image={page.frontmatter.image && page.frontmatter.image.childImageSharp.fluid.src}>
                     <div className="topbar">
                         <Link to="/blog/list">
@@ -110,6 +111,7 @@ export const query = graphql`
         markdownRemark(fields: { slug: {eq: $slug } }) {
             id
             html
+            excerpt
             frontmatter {
                 title
                 description

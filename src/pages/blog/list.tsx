@@ -7,6 +7,7 @@ import MultiLanguage from '../../components/MultiLanguage';
 import { graphql, Link } from 'gatsby';
 import useLang from '../../lib/useLang';
 import { tablet, mobile } from '../../lib/style/media';
+import SEO from '../../components/SEO';
 
 const Wrap = styled.div<{ image: string }>`
     .header {
@@ -112,6 +113,7 @@ function Page({ data }: any) {
 
   return (
     <Layout>
+      <SEO title="블로그 목록" />
       <Wrap image={image.src}>
         <header className="header">
           <div className="language-select">

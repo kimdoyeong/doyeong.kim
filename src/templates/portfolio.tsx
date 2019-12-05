@@ -51,7 +51,7 @@ function Portfolio({ data: { markdownRemark } }: any) {
   return (
     <Layout>
       <Wrap>
-        <SEO title={page.frontmatter.title} />
+        <SEO title={page.frontmatter.title} description={page.frontmatter.description || page.excerpt} />
         <Banner image={page.frontmatter.image.childImageSharp.fluid.src} />
         <div className="contents">
           <header className="header">
