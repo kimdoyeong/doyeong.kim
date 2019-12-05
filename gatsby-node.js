@@ -13,6 +13,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const portfolioPost = path.resolve("./src/templates/portfolio.tsx")
+  const blogPost = path.resolve("./src/templates/blog.tsx")
   const result = await graphql(`
     {
       allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
@@ -34,22 +35,26 @@ exports.createPages = async ({ graphql, actions }) => {
     throw result.errors
   }
 
-  const portfolios = result.data.allMarkdownRemark.edges
+  const posts = result.data.allMarkdownRemark.edges
 
-  portfolios.forEach((post) => {
+  posts.forEach(post => {
     createPage({
       path: post.node.fields.slug,
-      component: portfolioPost,
+      component: post.node.fields.slug.match(/^\/portfolio/)
+        ? portfolioPost
+        : blogPost,
       context: {
         slug: post.node.fields.slug,
       },
     })
   })
 }
-exports.onCreateNode = async ({ node, actions, getNode }) => {
+exports.onCreateNode = async ({ node, actions, getNode, ...props }) => {
   const { createNodeField } = actions
   if (node.internal.type === `MarkdownRemark`) {
-    const value = `/portfolio${createFilePath({ node, getNode })}`
+    const path = getNode(node.parent).sourceInstanceName
+
+    const value = `/${path}${createFilePath({ node, getNode })}`
     createNodeField({
       name: `slug`,
       node,

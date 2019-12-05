@@ -34,10 +34,6 @@ function Id({ name, children }: { name: string | React.ReactNode, children: Reac
     )
 }
 function ProfileSection() {
-    const birthday = new Date('2003-03-08');
-    const now = new Date();
-    const dday = Math.ceil((now.getTime() - birthday.getTime()) / (1000 * 60 * 60 * 24));
-    const old = now.getFullYear() - birthday.getFullYear() - (new Date(now.getFullYear(), birthday.getMonth(), birthday.getDate()).getTime() > now.getTime() ? 1 : 0);
     return (
         <Section>
             <h1 className="title">Profile</h1>
@@ -47,8 +43,8 @@ function ProfileSection() {
                 </Id>
                 <Id name={<>🗓️ <MultiLanguage ko="출생" en="Birth" /></>}>
                     <MultiLanguage
-                        ko={`2003년 3월 8일 (D+ ${dday}, 만 ${old}세), 대한민국`}
-                        en={`March 8, 2003 (D+ ${dday}, ${old} Years Old), South Korea`}
+                        ko={`2003년 3월 8일, 대한민국`}
+                        en={`March 8, 2003, South Korea`}
                     />
                 </Id>
                 <Id name={<>🎓 <MultiLanguage ko="학력" en="Education" /></>}>

@@ -6,9 +6,11 @@ function usePortfolioList() {
   const { defaults, ko, en } = useStaticQuery(graphql`
     query {
       defaults: allMarkdownRemark(
-        limit: 5
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { lang: { eq: null } } }
+        filter: {
+          frontmatter: { lang: { eq: null } }
+          fields: { slug: { regex: "/^/portfolio/" } }
+        }
       ) {
         edges {
           node {
@@ -33,9 +35,11 @@ function usePortfolioList() {
         }
       }
       ko: allMarkdownRemark(
-        limit: 5
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { lang: { eq: "ko" } } }
+        filter: {
+          frontmatter: { lang: { eq: "ko" } }
+          fields: { slug: { regex: "/^/portfolio/" } }
+        }
       ) {
         edges {
           node {
@@ -60,9 +64,11 @@ function usePortfolioList() {
         }
       }
       en: allMarkdownRemark(
-        limit: 5
         sort: { fields: [frontmatter___date], order: DESC }
-        filter: { frontmatter: { lang: { eq: "en" } } }
+        filter: {
+          frontmatter: { lang: { eq: "en" } }
+          fields: { slug: { regex: "/^/portfolio/" } }
+        }
       ) {
         edges {
           node {

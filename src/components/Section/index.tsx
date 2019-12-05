@@ -7,20 +7,20 @@ interface WrapProps {
   noPadding?: boolean
 }
 const Wrap = styled.div<WrapProps>`
-  box-shadow: 0 5px 5px -1px rgba(0, 0, 0, 0.7);
   & > .contents {
     ${props =>
-      !props.noPadding &&
-      css`
+    !props.noPadding &&
+    css`
         padding: 2.5em 3em;
       `}
-    ${mobile(css`
-      font-size: 14px;
-    `)}
-        & > .title {
+    
+    & > .title, .section-title {
       font-size: 3em;
       font-weight: lighter;
     }
+    ${mobile(css`
+      font-size: 14px;
+    `)}
   }
   ${props =>
     props.image &&
@@ -32,16 +32,17 @@ const Wrap = styled.div<WrapProps>`
         background: url(${props.image}) no-repeat;
         background-size: cover;
         background-position: center;
+        box-shadow: 0 5px 5px -1px rgba(0, 0, 0, 0.7);
       }
     `}
 `
 type SectionProps = WrapProps & {
   children: React.ReactNode
 }
-function Section({ image, children }: SectionProps) {
+function Section({ children, ...props }: SectionProps) {
   return (
-    <Wrap image={image}>
-      {image && <div className="image"></div>}
+    <Wrap {...props}>
+      {props.image && <div className="image"></div>}
       <div className="contents">{children}</div>
     </Wrap>
   )

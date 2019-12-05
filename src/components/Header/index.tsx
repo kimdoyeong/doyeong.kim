@@ -7,6 +7,7 @@ import useImageCode from '../../lib/image/useImageCode';
 import { tablet, uhd, mobile } from '../../lib/style/media';
 import LanguageSelector from '../MultiLanguage/LanguageSelector';
 import LinkButton from './Link';
+import MultiLanguage from '../MultiLanguage';
 
 const Wrap = styled.header`
     height: 100vh;
@@ -80,7 +81,7 @@ function Header() {
                     <h1>Doyeong Kim</h1>
                 </div>
                 <p>
-                    Web Developer @ Sunrin Internet High School.
+                    <MultiLanguage en="Web Developer @ Sunrin Internet High School." ko="웹 개발자 @ 선린인터넷고등학교" />
                 </p>
                 <div className="buttons">
                     <LinkButton to="http://git.doyeong.kim" image={github} name="GitHub" />
