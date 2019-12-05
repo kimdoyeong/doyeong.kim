@@ -24,34 +24,40 @@ const Wrap = styled.div<{ image: string }>`
     & > .contents {
         padding: 3em;
         flex: 1;
-        & > .goto {
+        box-shadow: 5px 0 5px -1px rgba(0,0,0,0.5);
+        & > .foot {
             position: absolute;
-            text-align: center;
             left: 0;
             right: 0;
             bottom: 0;
-            padding: 2.5em;
-            & > a {
-                all: unset;
+
+            .goto {
+                position: absolute;
+                bottom: 20px;
+                left: 0;
+                right: 0;
+                display: flex;
+                justify-content: center;
+                & > a {
+                    all: unset;
+                }
             }
-        }
-        & > .bg {
-            position: absolute;
-            z-index: -1;
-            bottom: 0;
-            top: 70vh;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to bottom, rgba(255,255,255,0) 40%, rgba(255,255,255,0.3))
+            .bg {
+                z-index: -1;
+                height: 30vh;
+                pointer-events: none;
+                background: linear-gradient(to bottom, rgba(0,0,0,0) 40%, rgba(0,0,0,0.3))
+            }
         }
     }
 
     ${mobile(css`
         flex-direction: column;
         min-height: auto;
+        padding-bottom: 20vh;
         & > .image {
             width: auto;
-            height: 60vh;
+            height: 30vh;
         }
     `)}
 `;
@@ -66,10 +72,12 @@ function BlogSection() {
                     <div className="list">
                         <List />
                     </div>
-                    <div className="goto">
-                        <Link to="/blog/list"><Button primary>목록 보기</Button></Link>
+                    <div className="foot">
+                        <div className="goto">
+                            <Link to="/blog/list"><Button primary>목록 보기</Button></Link>
+                        </div>
+                        <div className="bg" />
                     </div>
-                    <div className="bg" />
                 </div>
             </Wrap>
         </Section>

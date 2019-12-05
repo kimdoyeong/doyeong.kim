@@ -1,8 +1,9 @@
 import React from 'react'
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import useBlogPreview from '../../../lib/query/useBlogPreview';
 import useLang from '../../../lib/useLang';
 import { Link } from 'gatsby';
+import { mobile } from '../../../lib/style/media';
 
 const Wrap = styled.div`
     display: flex;
@@ -12,9 +13,17 @@ const Wrap = styled.div`
     }
     & > a > .blog-post {
         width: 400px;
+        margin: 1em;
+        box-sizing: border-box;
         background: #333;
         border-radius: 7px;
         box-shadow: 3px 3px 5px -1px rgba(0,0,0,0.3);
+        ${mobile(css`
+            width: 300px;
+            margin: 0;
+            margin-bottom: 1em;
+            box-sizing: border-box;
+        `)}
         .contents {
             padding: 1.5em 1em;
             h3.title {
@@ -40,6 +49,9 @@ const Image = styled.div<{ image?: string }>`
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 
+    ${mobile(css`
+        height: 150px;
+    `)}
 `;
 function Element({
     excerpt,

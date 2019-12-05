@@ -4,30 +4,16 @@ import styled, { css } from 'styled-components';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
+import { mobile } from '../lib/style/media';
 const Wrap = styled.div`
     .contents {
         max-width: 1280px;
         margin: 0 auto;
         padding: 2.5em;
-        & > header.header {
-            margin-bottom: 2rem;
-            .title {
-                font-size: 3.5em;
-                margin-top: 0;
-                margin-bottom: 1rem;
-            }
-            .sub p {
-                margin-top: 0;
-                color: #BABABA;
-                &.date {
-                    margin: 0;
-                }
-            }
-        }
     }
 `;
 const Banner = styled.div<{ image?: string }>`
-    height: 50vh;
+    height: 100vh;
     ${(props) => props.image ?
         css`
         background: url(${props.image}) no-repeat;
@@ -37,6 +23,45 @@ const Banner = styled.div<{ image?: string }>`
     background-size: cover;
     background-position: center;
     box-shadow: 0 10px 5px -1px rgba(0,0,0,0.3);
+    position: relative;
+    & > header.header {
+        position: absolute;
+        bottom: 0;
+        padding: 3em;
+        padding-bottom: 10vh;
+        z-index: 3;
+        margin-bottom: 2rem;
+        max-width: 1280px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        .title {
+            font-size: 3.5em;
+            margin-top: 0;
+            margin-bottom: 1rem;
+
+            ${mobile(css`
+                font-size: 3em;
+            `)}
+        }
+        .sub p {
+            margin-top: 0;
+            color: #BABABA;
+            &.date {
+                margin: 0;
+            }
+        }
+    }
+    & > .background {
+        background: linear-gradient(to bottom, rgba(0,0,0,0) 10%, rgba(0,0,0,0.7) 70%);
+        
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 70vh;
+        z-index: 0;
+    }
 `;
 function BlogTemplate({ data: { markdownRemark } }: any) {
     const page = markdownRemark;
@@ -44,8 +69,7 @@ function BlogTemplate({ data: { markdownRemark } }: any) {
         <Layout>
             <Wrap>
                 <SEO title={page.frontmatter.title} />
-                <Banner image={page.frontmatter.image && page.frontmatter.image.childImageSharp.fluid.src} />
-                <div className="contents">
+                <Banner image={page.frontmatter.image && page.frontmatter.image.childImageSharp.fluid.src}>
                     <header className="header">
                         <h1 className="title">
                             {page.frontmatter.title}
@@ -55,6 +79,10 @@ function BlogTemplate({ data: { markdownRemark } }: any) {
                             {page.frontmatter.description && <p>{page.frontmatter.description}</p>}
                         </div>
                     </header>
+                    <div className="background" />
+                </Banner>
+                <div className="contents">
+
                     <article className="article _content_article_" dangerouslySetInnerHTML={{ __html: page.html }} />
                 </div>
             </Wrap>
