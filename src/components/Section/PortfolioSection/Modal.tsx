@@ -7,7 +7,7 @@ import Button from "../../Form/Button"
 import MultiLanguage from "../../MultiLanguage"
 import { push } from 'gatsby'
 interface WrapProps {
-  image?: string
+    image?: string
 }
 const Wrap = styled.div<WrapProps>`
   position: fixed;
@@ -39,8 +39,8 @@ const Wrap = styled.div<WrapProps>`
       right: 1em;
     }
     ${props =>
-    props.image &&
-    css`
+        props.image &&
+        css`
         .image {
           height: 200px;
           background: url(${props.image}) no-repeat;
@@ -49,7 +49,7 @@ const Wrap = styled.div<WrapProps>`
         }
       `}
     .contents {
-      padding: 1em;
+      padding: 1em 2em;
 
       & > h1.title {
         font-size: 3em;
@@ -64,57 +64,57 @@ const Wrap = styled.div<WrapProps>`
 `
 
 interface PortfolioModalProps {
-  title: string
-  date: string
-  contents: string
-  image?: string
-  show?: boolean
-  en?: any
-  slug: any
-  onClose?(): any
+    title: string
+    date: string
+    contents: string
+    image?: string
+    show?: boolean
+    en?: any
+    slug: any
+    onClose?(): any
 }
 function PortfolioModal({
-  title,
-  date,
-  contents,
-  image,
-  show,
-  onClose,
-  en,
-  slug
+    title,
+    date,
+    contents,
+    image,
+    show,
+    onClose,
+    en,
+    slug
 }: PortfolioModalProps) {
-  const { lang } = useSelector((state: RootState) => state.Language)
-  if (!show) return null
-  const modal = ({ opacity, scale }: any) => (
-    <Wrap image={image} onClick={onClose} style={{ opacity }}>
-      <div
-        className="modal"
-        onClick={e => e.stopPropagation()}
-        style={{ transform: `scale(${scale})` }}
-      >
-        <Button className="go" onClick={() => push(slug)}><MultiLanguage ko="페이지로 이동" en="Go to Page" /></Button>
-        <div className="image" />
-        <div className="contents">
-          <h1 className="title">{title}</h1>
-          <p className="date">{date}</p>
-          <div
-            className="_content_article_"
-            dangerouslySetInnerHTML={{
-              __html: en && lang === "en" ? en : contents,
-            }}
-          />
-        </div>
-      </div>
-    </Wrap>
-  )
-  return (
-    <Motion
-      defaultStyle={{ opacity: 0, scale: 1.5 }}
-      style={{ opacity: spring(1), scale: spring(1) }}
-    >
-      {modal}
-    </Motion>
-  )
+    const { lang } = useSelector((state: RootState) => state.Language)
+    if (!show) return null
+    const modal = ({ opacity, scale }: any) => (
+        <Wrap image={image} onClick={onClose} style={{ opacity }}>
+            <div
+                className="modal"
+                onClick={e => e.stopPropagation()}
+                style={{ transform: `scale(${scale})` }}
+            >
+                <Button className="go" onClick={() => push(slug)}><MultiLanguage ko="페이지로 이동" en="Go to Page" /></Button>
+                <div className="image" />
+                <div className="contents">
+                    <h1 className="title">{title}</h1>
+                    <p className="date">{date}</p>
+                    <div
+                        className="_content_article_"
+                        dangerouslySetInnerHTML={{
+                            __html: en && lang === "en" ? en : contents,
+                        }}
+                    />
+                </div>
+            </div>
+        </Wrap>
+    )
+    return (
+        <Motion
+            defaultStyle={{ opacity: 0, scale: 1.5 }}
+            style={{ opacity: spring(1), scale: spring(1) }}
+        >
+            {modal}
+        </Motion>
+    )
 }
 
 export default PortfolioModal
