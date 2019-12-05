@@ -3,8 +3,6 @@ import { graphql } from "gatsby"
 import styled, { css } from "styled-components"
 import SEO from "../components/SEO"
 import { mobile } from "../lib/style/media"
-import Button from '../components/Form/Button';
-import MultiLanguage from "../components/MultiLanguage"
 import Layout from "../components/Layout"
 
 const Wrap = styled.div`
