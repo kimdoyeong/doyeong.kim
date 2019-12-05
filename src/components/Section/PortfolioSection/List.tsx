@@ -3,11 +3,30 @@ import styled, { css } from 'styled-components';
 import usePortfolioList from '../../../lib/query/usePortfolioList';
 import { mobile } from '../../../lib/style/media';
 import PortfolioModal from './Modal';
+import Button from '../../Form/Button';
 
 const Wrap = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-
+    .portfolios {
+        display: flex;
+        flex-wrap: wrap;
+        
+    }
+    .actions {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 1em;
+        .wrapButtons {
+            position: relative;
+            .next {
+                position: absolute;
+                right:0;
+            }
+            .prev {
+                position: absolute;
+                left:0;
+            }
+        }
+    }
     .portfolio {
         background: #333;
         width: 300px;
@@ -40,7 +59,7 @@ const Wrap = styled.div`
     }
 `;
 
-function Portfolio({ date, description, description_ko, description_en, excerpt, slug, title, image, html, en }: any) {
+function Portfolio({ date, description, excerpt, slug, title, image, html, en }: any) {
     const [show, setShow] = useState(false);
     return (
         <>
@@ -58,9 +77,26 @@ function Portfolio({ date, description, description_ko, description_en, excerpt,
 }
 function PortfolioList() {
     const list = usePortfolioList();
+    const [page, setPage] = useState(1);
+    const amount = 5;
+    const plist = list.slice((page - 1) * amount, page * amount);
+    console.log((page - 1) * amount, page * amount);
+    console.log(page * amount, list.length);
     return (
         <Wrap>
-            {list.map((data: any) => <Portfolio key={data.slug} {...data} />)}
+            <div className="portfolios">
+                {plist.map((data: any) => <Portfolio key={data.slug} {...data} />)}
+            </div>
+            <div className="actions">
+                <div className="wrapButtons">
+                    {page !== 1 && <Button className="prev" primary onClick={() => setPage(page - 1)}>이전으로</Button>}
+                    {list.length - page * amount >= amount && (
+                        <Button className="next" primary onClick={() => setPage(page + 1)}>
+                            다음으로
+                        </Button>
+                    )}
+                </div>
+            </div>
         </Wrap>
     );
 }
