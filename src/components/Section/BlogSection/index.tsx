@@ -3,10 +3,11 @@ import styled, { css } from 'styled-components';
 
 import useImageBlog from '../../../lib/image/useImageBlog';
 import Section from '..';
-import { mobile } from '../../../lib/style/media';
+import { smallDesktop } from '../../../lib/style/media';
 import List from './List';
 import Button from '../../Form/Button';
 import { Link } from 'gatsby';
+import MultiLanguage from '../../MultiLanguage';
 
 const Wrap = styled.div<{ image: string }>`
     display: flex;
@@ -24,7 +25,13 @@ const Wrap = styled.div<{ image: string }>`
     & > .contents {
         padding: 3em;
         flex: 1;
-        box-shadow: 5px 0 5px -1px rgba(0,0,0,0.5);
+        & > .list {
+            display: flex;
+            flex-wrap: wrap;
+            ${smallDesktop(css`
+                justify-content: center;
+            `)}
+        }
         & > .foot {
             position: absolute;
             left: 0;
@@ -51,13 +58,13 @@ const Wrap = styled.div<{ image: string }>`
         }
     }
 
-    ${mobile(css`
+    ${smallDesktop(css`
         flex-direction: column;
         min-height: auto;
         padding-bottom: 20vh;
         & > .image {
             width: auto;
-            height: 30vh;
+            height: 60vh;
         }
     `)}
 `;
@@ -74,7 +81,9 @@ function BlogSection() {
                     </div>
                     <div className="foot">
                         <div className="goto">
-                            <Link to="/blog/list"><Button primary>목록 보기</Button></Link>
+                            <Link to="/blog/list"><Button primary>
+                                <MultiLanguage ko="목록 보기" en="List View" />
+                            </Button></Link>
                         </div>
                         <div className="bg" />
                     </div>

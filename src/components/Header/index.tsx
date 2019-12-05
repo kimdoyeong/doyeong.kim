@@ -4,7 +4,7 @@ import styled, { css } from 'styled-components';
 import github from '../../assets/github.svg';
 import logo from '../../assets/doyeong.kim.svg';
 import useImageCode from '../../lib/image/useImageCode';
-import { tablet, uhd, mobile } from '../../lib/style/media';
+import { tablet, uhd, smallDesktop, desktop } from '../../lib/style/media';
 import LanguageSelector from '../MultiLanguage/LanguageSelector';
 import LinkButton from './Link';
 import MultiLanguage from '../MultiLanguage';
@@ -20,14 +20,22 @@ const Wrap = styled.header`
     .contents {
         position: absolute;
         top: 20%;
-        left: 20vw;
-        right: 20vw;
+        left: 10vw;
+        right: 10vw;
         display: flex;
         flex-direction: column;
         align-items: flex-end;
         ${tablet(css`
             left: 10vw;
-            right: 10vw;        
+            right: 10vw;
+        `)}
+        ${smallDesktop(css`
+            left: 6vw;
+            right: 6vw;
+        `)}
+        ${desktop(css`
+            left: 20vw;
+            right: 20vw;
         `)}
         ${uhd(css`
             left: 30vw;
@@ -64,7 +72,7 @@ const Image = styled.div<{ img: any }>`
     background-size: cover;
     background-position: center;
 
-    ${mobile(css`
+    ${tablet(css`
         max-width: 100vw;
     `)}
 `;

@@ -1,10 +1,11 @@
 import React from 'react'
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import styled, { css } from 'styled-components';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import { mobile } from '../lib/style/media';
+import Button from '../components/Form/Button';
 const Wrap = styled.div`
     .contents {
         max-width: 1280px;
@@ -24,6 +25,15 @@ const Banner = styled.div<{ image?: string }>`
     background-position: center;
     box-shadow: 0 10px 5px -1px rgba(0,0,0,0.3);
     position: relative;
+    & > .topbar {
+        position: absolute;
+        top: 24px;
+        left: 24px;
+        a {
+            all: unset;
+            cursor:pointer;
+        }
+    }
     & > header.header {
         position: absolute;
         bottom: 0;
@@ -70,6 +80,11 @@ function BlogTemplate({ data: { markdownRemark } }: any) {
             <Wrap>
                 <SEO title={page.frontmatter.title} />
                 <Banner image={page.frontmatter.image && page.frontmatter.image.childImageSharp.fluid.src}>
+                    <div className="topbar">
+                        <Link to="/blog/list">
+                            <Button>목록으로 가기</Button>
+                        </Link>
+                    </div>
                     <header className="header">
                         <h1 className="title">
                             {page.frontmatter.title}

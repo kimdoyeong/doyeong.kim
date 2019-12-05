@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import useBlogPreview from '../../../lib/query/useBlogPreview';
 import useLang from '../../../lib/useLang';
 import { Link } from 'gatsby';
-import { mobile } from '../../../lib/style/media';
+import { mobile, tablet } from '../../../lib/style/media';
 
 const Wrap = styled.div`
     display: flex;
@@ -11,18 +11,19 @@ const Wrap = styled.div`
         all:unset;
         cursor: pointer;
     }
-    & > a > .blog-post {
-        width: 400px;
+    & > .blog-post {
+        width: 300px;
         margin: 1em;
         box-sizing: border-box;
         background: #333;
         border-radius: 7px;
         box-shadow: 3px 3px 5px -1px rgba(0,0,0,0.3);
+        ${tablet(css`
+            width: 100%;
+            margin: 1em 2em;
+        `)}
         ${mobile(css`
-            width: 300px;
-            margin: 0;
-            margin-bottom: 1em;
-            box-sizing: border-box;
+            margin: 1em 0;
         `)}
         .contents {
             padding: 1.5em 1em;
@@ -32,7 +33,6 @@ const Wrap = styled.div`
             p {
                 margin-bottom: 0;
                 color: #DADADA;
-                
             }
             p.description {
                 margin: 0;
@@ -45,7 +45,7 @@ const Image = styled.div<{ image?: string }>`
     background: ${(props) => props.image ? `url(${props.image}) no-repeat` : '#DADADA'};
     background-size: cover;
     background-position: center;
-    height: 300px;
+    height: 200px;
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 
@@ -64,14 +64,13 @@ function Element({
     }
 }: any) {
     return (
-        <Link to={slug}>
-            <div className="blog-post">
-                <Image image={image && image.childImageSharp.fluid.src} />
-                <div className="contents">
-                    <h3 className="title">{title}</h3>
-                    <p className="date">{date}</p>
-                    <p className="description">{description || excerpt}</p>
-                </div>
+
+        <Link to={slug} className="blog-post">
+            <Image image={image && image.childImageSharp.fluid.src} />
+            <div className="contents">
+                <h3 className="title">{title}</h3>
+                <p className="date">{date}</p>
+                <p className="description">{description || excerpt}</p>
             </div>
         </Link>
     );
@@ -81,6 +80,7 @@ function BlogSectionList() {
     const lang = useLang();
 
     const list = data[lang].edges;
+    console.log(lang);
 
     return (
         <Wrap>

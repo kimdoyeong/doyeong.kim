@@ -4,6 +4,7 @@ function useBlogPreview() {
   const data = useStaticQuery(graphql`
     query {
       ko: allMarkdownRemark(
+        limit: 5
         sort: { fields: [frontmatter___date], order: DESC }
         filter: {
           frontmatter: { lang: { eq: "ko" } }
@@ -32,9 +33,10 @@ function useBlogPreview() {
         }
       }
       en: allMarkdownRemark(
+        limit: 5
         sort: { fields: [frontmatter___date], order: DESC }
         filter: {
-          frontmatter: { lang: { eq: "ko" } }
+          frontmatter: { lang: { eq: "en" } }
           fields: { slug: { regex: "/^/blog/" } }
         }
       ) {

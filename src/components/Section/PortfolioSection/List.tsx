@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled, { css } from 'styled-components';
 import usePortfolioList from '../../../lib/query/usePortfolioList';
-import { mobile } from '../../../lib/style/media';
+import { tablet, mobile, smallDesktop } from '../../../lib/style/media';
 import PortfolioModal from './Modal';
 import Button from '../../Form/Button';
 
@@ -9,7 +9,9 @@ const Wrap = styled.div`
     .portfolios {
         display: flex;
         flex-wrap: wrap;
-        
+        ${smallDesktop(css`
+            justify-content: center;
+        `)}
     }
     .actions {
         max-width: 1280px;
@@ -53,8 +55,12 @@ const Wrap = styled.div`
                 margin-top: 0;
             }
         }
-        ${mobile(css`
+        ${tablet(css`
             width: 100%;
+            margin: 1em 2em;
+        `)}
+        ${mobile(css`
+            margin: 1em 0;
         `)}
     }
 `;
