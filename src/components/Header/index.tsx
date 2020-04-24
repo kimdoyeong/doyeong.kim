@@ -1,13 +1,13 @@
-import React from 'react'
-import styled, { css } from 'styled-components';
+import React from "react"
+import styled, { css } from "styled-components"
 
-import github from '../../assets/github.svg';
-import logo from '../../assets/doyeong.kim.svg';
-import useImageCode from '../../lib/image/useImageCode';
-import { tablet, uhd, smallDesktop, desktop } from '../../lib/style/media';
-import LanguageSelector from '../MultiLanguage/LanguageSelector';
-import LinkButton from './Link';
-import MultiLanguage from '../MultiLanguage';
+import github from "../../assets/github.svg"
+import logo from "../../assets/doyeong.kim.svg"
+import useImageCode from "../../lib/image/useImageCode"
+import { tablet, uhd, smallDesktop, desktop } from "../../lib/style/media"
+import LanguageSelector from "../MultiLanguage/LanguageSelector"
+import LinkButton from "./Link"
+import MultiLanguage from "../MultiLanguage"
 
 const Wrap = styled.header`
     height: 100vh;
@@ -26,20 +26,20 @@ const Wrap = styled.header`
         flex-direction: column;
         align-items: flex-end;
         ${tablet(css`
-            left: 10vw;
-            right: 10vw;
+          left: 10vw;
+          right: 10vw;
         `)}
         ${smallDesktop(css`
-            left: 6vw;
-            right: 6vw;
+          left: 6vw;
+          right: 6vw;
         `)}
         ${desktop(css`
-            left: 20vw;
-            right: 20vw;
+          left: 20vw;
+          right: 20vw;
         `)}
         ${uhd(css`
-            left: 30vw;
-            right: 30vw;
+          left: 30vw;
+          right: 30vw;
         `)}
         & > * {
             background: rgba(0,0,0,.3);
@@ -62,41 +62,48 @@ const Wrap = styled.header`
             padding: 1em;
         }
     }
-`;
+`
 const Image = styled.div<{ img: any }>`
-    height: 100vh;
-    width: auto;
-    max-width: 50vw;
-    box-shadow: 5px 5px 5px -1px rgba(0,0,0,1);
-    background: url(${props => props.img}) no-repeat;
-    background-size: cover;
-    background-position: center;
+  height: 100vh;
+  width: auto;
+  max-width: 50vw;
+  box-shadow: 5px 5px 5px -1px rgba(0, 0, 0, 1);
+  background: url(${props => props.img}) no-repeat;
+  background-size: cover;
+  background-position: center;
 
-    ${tablet(css`
-        max-width: 100vw;
-    `)}
-`;
+  ${tablet(css`
+    max-width: 100vw;
+  `)}
+`
 
 function Header() {
-    const code = useImageCode();
-    return (
-        <Wrap>
-            <Image img={code.src} aria-label="Coding Desk" />
-            <div className="contents">
-                <LanguageSelector />
-                <div className="title">
-                    <img src={logo} alt="Logo" className="logo" />
-                    <h1>Doyeong Kim</h1>
-                </div>
-                <p>
-                    <MultiLanguage en="Web Developer @ Sunrin Internet High School." ko="웹 개발자 @ 선린인터넷고등학교" />
-                </p>
-                <div className="buttons">
-                    <LinkButton to="http://git.doyeong.kim" image={github} name="GitHub" />
-                </div>
-            </div>
-        </Wrap>
-    )
+  const code = useImageCode()
+  return (
+    <Wrap>
+      <Image img={code.src} aria-label="Coding Desk" />
+      <div className="contents">
+        <LanguageSelector />
+        <div className="title">
+          <img src={logo} alt="Logo" className="logo" />
+          <h1>Doyeong Kim</h1>
+        </div>
+        <p>
+          <MultiLanguage
+            en="Web Developer @ Sunrin Internet High School."
+            ko="웹 개발자 @ 선린인터넷고등학교"
+          />
+        </p>
+        <div className="buttons">
+          <LinkButton
+            to="http://git.doyeong.dev"
+            image={github}
+            name="GitHub"
+          />
+        </div>
+      </div>
+    </Wrap>
+  )
 }
 
-export default Header;
+export default Header
