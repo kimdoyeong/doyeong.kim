@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Doyeong.kim`,
+    title: `Doyeong.dev`,
     description: `그냥 개발자의 사이트`,
     author: `@doyeongkim`,
   },
@@ -49,8 +49,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Doyeong.kim`,
-        short_name: `Doyeong.kim`,
+        name: `Doyeong.dev`,
+        short_name: `Doyeong.dev`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
