@@ -11,6 +11,10 @@ const Wrap = styled.div`
     max-width: 1280px;
     margin: 0 auto;
     padding: 2.5em;
+
+    ${mobile(css`
+      padding: 2em 1.25em;
+    `)}
   }
 `
 const Banner = styled.div<{ image?: string }>`
@@ -47,13 +51,17 @@ const Banner = styled.div<{ image?: string }>`
     margin: 0 auto;
     left: 0;
     right: 0;
+    ${mobile(css`
+      padding: 3em 2em;
+      padding-bottom: 10vh;
+    `)}
     .title {
       font-size: 3.5em;
       margin-top: 0;
       margin-bottom: 1rem;
 
       ${mobile(css`
-        font-size: 3em;
+        font-size: 2em;
       `)}
     }
     .sub p {
