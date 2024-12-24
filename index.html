@@ -1,1 +1,64 @@
-<h1>I will be back.</h1>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>doyeong.dev</title>
+</head>
+
+
+
+<body>
+    <h1>doyeong.dev</h1>
+    <section>
+        <h2>ROK Air Force</h2>
+        <p>2025.02.03 - 2026.11.02</p>
+        <p><span id="countdown-text"></span> <span id="countdown"></span></p>
+    </section>
+
+    <script>
+        const targetDate = new Date("2025-02-03 14:00:00");
+        const countdown = document.getElementById("countdown");
+        const countdownText = document.getElementById("countdown-text");
+
+        const setText = () => {
+            const now = new Date();
+            if (now.getTime() >= targetDate.getTime()) {
+                const endDate = new Date("2026-11-02 00:00:00");
+
+                if (now.getTime() >= endDate.getTime()) {
+                    countdownText.innerText = "전역했다!!!";
+                    countdown.innerText = "0일 0시간 0분 0초";
+                    return;
+                }
+
+                const timeDifference = endDate - now;
+                const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+                countdown.innerText = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+
+                countdownText.innerText = "전역까지";
+                countdown.innerText = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+                return;
+            }
+
+            countdownText.innerText = "입대까지";
+            const timeDifference = targetDate - now;
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            countdown.innerText = `${days}일 ${hours}시간 ${minutes}분 ${seconds}초`;
+        }
+        setInterval(setText, 1000);
+
+        setText();
+    </script>
+</body>
+
+</html>
