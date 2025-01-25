@@ -15,11 +15,14 @@
         <h2>ROK Air Force</h2>
         <p>2025.02.03 - 2026.11.02</p>
         <p><span id="countdown-text"></span> <span id="countdown"></span></p>
+
+        <img src="noaang.jpg" alt="noaang" id="image">
     </section>
 
     <script>
         const targetDate = new Date("2025-02-03 14:00:00");
         const countdown = document.getElementById("countdown");
+        const image = document.getElementById("image");
         const countdownText = document.getElementById("countdown-text");
 
         const setText = () => {
@@ -30,6 +33,7 @@
                 if (now.getTime() >= endDate.getTime()) {
                     countdownText.innerText = "전역했다!!!";
                     countdown.innerText = "0일 0시간 0분 0초";
+                    image.src = "yesyesa.png";
                     return;
                 }
 
